@@ -33,28 +33,26 @@ public class Encryption{
               BigInteger[] privateKey = {n, d};
               
               Scanner userInput = new Scanner(System.in);              
-              Boolean valid = false;
-              do{
-                     System.out.println("Please enter the pathname of the file you would like to encrypt:");
-                     String originalFilePath = userInput.nextLine();
-                     originalFilePath = originalFilePath.replace("\\","/");
-                     
-                     System.out.println("Please enter the pathname of the desired location for the decrypted file:");
-                     String decryptedFilePath = userInput.nextLine();
-                     decryptedFilePath = decryptedFilePath.replace("\\","/");
-                     
-                     try{
-                            File originalFile = new File (originalFilePath);
-                            File encryptedFile = new File ("encryptedFile.txt");
-                            File decryptedFile = new File (decryptedFilePath);
-                            encryptFile(originalFile, encryptedFile, publicKey);
-                            decryptFile(encryptedFile, decryptedFile, privateKey);  
-                            valid = true;
-                     }catch(Exception error){
-                            error.printStackTrace();
-                            System.out.println("File not found.");
-                     }
-              }while (!valid);
+
+              System.out.println("Please enter the pathname of the file you would like to encrypt:");
+              String originalFilePath = userInput.nextLine();
+              originalFilePath = originalFilePath.replace("\\","/");
+
+              System.out.println("Please enter the pathname of the desired location for the decrypted file:");
+              String decryptedFilePath = userInput.nextLine();
+              decryptedFilePath = decryptedFilePath.replace("\\","/");
+
+              try{
+                     File originalFile = new File (originalFilePath);
+                     File encryptedFile = new File ("encryptedFile.txt");
+                     File decryptedFile = new File (decryptedFilePath);
+                     encryptFile(originalFile, encryptedFile, publicKey);
+                     decryptFile(encryptedFile, decryptedFile, privateKey);  
+                     valid = true;
+              }catch(Exception error){
+                     error.printStackTrace();
+                     System.out.println("File not found.");
+              }
        }
        
        /*  This method generates two different prime numbers
